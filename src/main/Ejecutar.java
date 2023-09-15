@@ -17,11 +17,20 @@ public class Ejecutar {
         queue.insert('x');
         queue.insert('y');
         queue.insert('f');
-        queue.insert('g');
+
+        System.out.println(queue.deleteRecursive());
+        System.out.println(queue.deleteRecursive());
+        System.out.println(queue.deleteRecursive());
+        System.out.println(queue.deleteRecursive());
         System.out.println(queue);
 
-        System.out.println(queue.delete());
-        System.out.println(queue);
+//        System.out.println(queue.delete());
+//        System.out.println(queue);
+
+        //System.out.println(queue.deleteRecursive());
+        System.out.println("counter is: " + queue.counter);
+        //System.out.println(queue);
+
 
         MyStack stack;
         stack = new MyStack();
@@ -37,9 +46,46 @@ public class Ejecutar {
         System.out.println(stack);
 
 
-        in = new Scanner(System.in);
+    //    in = new Scanner(System.in);
+
+//        System.out.println("Escriba su cadena a invertir:\n");
+//        String cadena = in.nextLine();
+//
+//        isPalindrome(cadena);
+//
+
+//        menu();
+//
+//        System.out.println(queue.tail);
 
 
+
+
+
+    }
+
+    MyStack revertStringWithStack(String data){
+        MyStack invertidoStack = new MyStack();
+        for(int i = 0; i < data.length(); i++){
+            invertidoStack.push(data.charAt(i));
+        }
+        return invertidoStack;
+    }
+
+    void isPalindrome(String cadena){
+
+        MyStack invertidoStack = revertStringWithStack(cadena);
+
+        System.out.println(invertidoStack);
+        String reversed = "";
+        for(int i = 0; i < cadena.length(); i++){
+           reversed += invertidoStack.pop();
+        }
+
+        if( cadena.replaceAll(" ", "").equals(reversed.replaceAll(" ","")) )
+            System.out.println("Si es palindromo");
+        else
+            System.out.println("NO es palindromo");
 
 
     }
@@ -61,13 +107,13 @@ public class Ejecutar {
         System.out.println("Print STACK \n\t> stack print\n");
         System.out.println("Print QUEUE \n\t> queue print\n");
 
-        System.out.println("Delete from STACK AND QUEUE\n\t> delete a b c d e ...\n");
-        System.out.println("Delete from STACK \n\t> stack pop a b c d e ...\n");
-        System.out.println("Delete from QUEUE \n\t> queue delete a b c d e ...\n\n");
+        System.out.println("Delete 1 item from STACK AND QUEUE\n\t> delete\n");
+        System.out.println("Delete 1 item from STACK \n\t> stack pop\n");
+        System.out.println("Delete 1 item from QUEUE \n\t> queue delete\n\n");
 
         System.out.print("> ");
 
-        while(in.hasNext()){
+        while(in.hasNextLine()){
             String input = in.nextLine();
             System.out.println("RAW input is: input\t" + input);
             if(input.startsWith("add ")) {
@@ -105,15 +151,17 @@ public class Ejecutar {
                 System.out.println(stack2.pop());
             }
             else if(input.startsWith("queue delete")){
-                System.out.println(queue2.delete());
+                //System.out.println(queue2.delete());
+                System.out.println(queue2.deleteRecursive());
             }
             else if(input.startsWith("print")){
                 System.out.println(queue2);
                 System.out.println(stack2);
             }
             else if(input.startsWith("delete")){
-                System.out.println("queue delete:\t" + queue2.delete() );
+                System.out.println("queue delete:\t" + queue2.deleteRecursive() );
                 System.out.println("stack pop:\t" + stack2.pop());
+                //System.out.println(stack2.pop());
             }
 
 
